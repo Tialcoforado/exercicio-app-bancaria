@@ -1,14 +1,14 @@
-public class Conta {
+public class ContaDefault {
     private static Integer counterId = 0;
     Integer idConta;
     String titularConta;
     Double saldo = 0.00;
     TipoDeConta tipoDeConta;
 
-    public Conta() {
+    public ContaDefault() {
     }
 
-    public Conta(Cliente cliente, Double saldo, TipoDeConta tipoDeConta) {
+    public ContaDefault(Cliente cliente, Double saldo, TipoDeConta tipoDeConta) {
         this.idConta = counterId;
         this.titularConta = cliente.getNome();
         this.saldo = saldo;

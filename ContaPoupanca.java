@@ -1,4 +1,4 @@
-public class ContaPoupanca extends Conta {
+public class ContaPoupanca extends ContaDefault {
     private static Integer counterId = 0;
     Integer idConta;
     String titularConta;
@@ -8,7 +8,7 @@ public class ContaPoupanca extends Conta {
     public ContaPoupanca() {
     }
 
-    public ContaPoupanca(Conta conta, Double saldo) {
+    public ContaPoupanca(ContaDefault conta, Double saldo) {
         this.idConta = counterId;
         this.titularConta = conta.getTitularConta();
         this.saldo = saldo;

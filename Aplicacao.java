@@ -6,9 +6,9 @@ public class Aplicacao {
         TestaAberturaContaCorrenteSucesso_200(myBank);
         
         // assinala contas a uma variavel para ficar mais legível
-        Conta contaDoJose = myBank.getConta(0);
-        Conta contaDoPedro = myBank.getConta(1);
-        Conta contaDaMaria = myBank.getConta(2);
+        ContaDefault contaDoJose = myBank.getConta(0);
+        ContaDefault contaDoPedro = myBank.getConta(1);
+        ContaDefault contaDaMaria = myBank.getConta(2);
         
         TestaDepositoSucesso_200(myBank);
         TesteConsultaSaldo(myBank);
@@ -28,7 +28,7 @@ public class Aplicacao {
     }
     
     // Realiza o saque em contas
-    private static void TesteSacarSucesso_200(Banco myBank, Conta contaDoJose, Conta contaDoPedro, Conta contaDaMaria)
+    private static void TesteSacarSucesso_200(Banco myBank, ContaDefault contaDoJose, ContaDefault contaDoPedro, ContaDefault contaDaMaria)
             throws ValorNegativoException {
         myBank.sacar(contaDoJose, 50.00);
         myBank.sacar(contaDoPedro, 100.00);
@@ -36,7 +36,7 @@ public class Aplicacao {
     }
 
     // Faz investimento em conta investimento
-    private static void TestarInvestirSucesso_200(Banco myBank, Conta contaDaMaria) {
+    private static void TestarInvestirSucesso_200(Banco myBank, ContaDefault contaDaMaria) {
         myBank.investir(myBank.getConta(0), 100.00);
         myBank.investir(myBank.getConta(1), 200.00);
         myBank.investir(contaDaMaria, 300.00);
@@ -58,7 +58,7 @@ public class Aplicacao {
     }
 
     // Faz a transferencia entre contas
-    private static void TestaTransferenciaSucesso_200(Banco myBank, Conta contaDoJose, Conta contaDoPedro) {
+    private static void TestaTransferenciaSucesso_200(Banco myBank, ContaDefault contaDoJose, ContaDefault contaDoPedro) {
         System.out.println(contaDoJose);
         System.out.println(contaDoPedro);
         myBank.transferir(contaDoJose, contaDoPedro, 100.00);

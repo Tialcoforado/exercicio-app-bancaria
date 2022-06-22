@@ -1,4 +1,4 @@
-public class ContaInvestimento extends Conta {
+public class ContaInvestimento extends ContaDefault {
     private static Integer counterId = 0;
     Integer idConta;
     String titularConta;
@@ -8,7 +8,7 @@ public class ContaInvestimento extends Conta {
     public ContaInvestimento() {
     }
 
-    public ContaInvestimento(Conta conta, Double saldo) {
+    public ContaInvestimento(ContaDefault conta, Double saldo) {
         this.idConta = counterId;
         this.titularConta = conta.getTitularConta();
         this.saldo = saldo;

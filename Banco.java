@@ -2,25 +2,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Banco implements Operacoes {
-    List<Conta> contas = new ArrayList<>();
+    List<ContaDefault> contas = new ArrayList<>();
     List<ContaInvestimento> contasInvestimento = new ArrayList<>();
     List<Lancamentos> lancamentos = new ArrayList<>();
 
-    public List<Conta> getContas() {
+    public List<ContaDefault> getContas() {
         return contas;
     }
 
-    public Conta getConta(Integer idConta) {
-        Conta conta = contas.get(idConta);
+    public ContaDefault getConta(Integer idConta) {
+        ContaDefault conta = contas.get(idConta);
         return conta;
     }
 
-    public Conta getContaInvestimento(Integer idConta) {
+    public ContaDefault getContaInvestimento(Integer idConta) {
         ContaInvestimento contaInvestimento = contasInvestimento.get(idConta);
         return contaInvestimento;
     }
 
-    public void setContas(List<Conta> contas) {
+    public void setContas(List<ContaDefault> contas) {
         this.contas = contas;
     }
 
@@ -34,9 +34,9 @@ public class Banco implements Operacoes {
 
     // Abrir conta
     @Override
-    public List<Conta> abrirConta(String nome, String email, TipoDeConta tipoDeConta) {
+    public List<ContaDefault> abrirConta(String nome, String email, TipoDeConta tipoDeConta) {
         Cliente cliente = new Cliente(nome, email);
-        Conta novaConta = new Conta(cliente, 0.00, TipoDeConta.ContaCorrente);
+        ContaDefault novaConta = new ContaDefault(cliente, 0.00, TipoDeConta.ContaCorrente);
         contas.add(novaConta);
         return contas;
     }
@@ -47,18 +47,18 @@ public class Banco implements Operacoes {
         if (valor < 0) {
             throw new ValorNegativoException();
         }
-        Conta contaDestino = contas.get(idConta);
+        ContaDefault contaDestino = contas.get(idConta);
         Double saldoAtual = contaDestino.getSaldo();
         contaDestino.setSaldo(saldoAtual + valor);
     }
 
     // Transferir recursos entre contas
-    public List<Lancamentos> transferir(Conta contaOrigem, Conta contaDestino, Double valor) {
+    public List<Lancamentos> transferir(ContaDefault contaOrigem, ContaDefault contaDestino, Double valor) {
         // TODO validacoes, contaOrigem e contaDestino não podem ser iguais
         // Valor da transferencia tem que ser maior que zero
         if (contaOrigem != contaDestino & valor > 0) {
-            Conta contaDebitada = contaOrigem;
-            Conta contaCreditada = contaDestino;
+            ContaDefault contaDebitada = contaOrigem;
+            ContaDefault contaCreditada = contaDestino;
             contaDebitada.setSaldo(contaDebitada.getSaldo() - valor);
             contaCreditada.setSaldo(contaCreditada.getSaldo() + valor);
         }
@@ -69,7 +69,7 @@ public class Banco implements Operacoes {
             return lancamentos;
     }
 
-    public List<ContaInvestimento> investir(Conta conta, Double valor) {
+    public List<ContaInvestimento> investir(ContaDefault conta, Double valor) {
         ContaInvestimento contaInvest = new ContaInvestimento(conta, valor);
         contasInvestimento.add(contaInvest);
         // Se cliente Pj Cobrar mais 0.5 de taxa
@@ -80,11 +80,11 @@ public class Banco implements Operacoes {
     };
 
     @Override
-    public List<Lancamentos> sacar(Conta contaOrigem, Double valor) throws ValorNegativoException {
+    public List<Lancamentos> sacar(ContaDefault contaOrigem, Double valor) throws ValorNegativoException {
         if (valor < 0) {
             throw new ValorNegativoException();
         }
-        Conta contaDebitada = contaOrigem;
+        ContaDefault contaDebitada = contaOrigem;
         contaDebitada.setSaldo(contaDebitada.getSaldo() - valor);
         // Se cliente Pj Cobrar mais 0.5 de taxa
         if (contaDebitada.tipoDeConta == TipoDeConta.ContaCorrentePj) {
@@ -96,7 +96,7 @@ public class Banco implements Operacoes {
 
     @Override
     public Double consultarSaldo(Integer idConta) {
-        Conta contaConsultada = getConta(idConta);
+        ContaDefault contaConsultada = getConta(idConta);
         Double saldo = contaConsultada.getSaldo();
         return saldo;
     }
