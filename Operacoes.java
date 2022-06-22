@@ -1,8 +1,10 @@
 import java.util.List;
 
+import src.models.contas.TipoConta;
+
 public interface Operacoes {
 
-    public List<ContaDefault> abrirConta(String nome, String email, TipoDeConta tipoDeConta);
+    public List<ContaDefault> abrirConta(String nome, String email, TipoConta tipoDeConta);
     
     public void depositar(Integer idConta, Double valor) throws Exception;
     

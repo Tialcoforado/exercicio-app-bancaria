@@ -1,9 +1,11 @@
+import src.models.contas.TipoConta;
+
 public class ContaInvestimento extends ContaDefault {
     private static Integer counterId = 0;
     Integer idConta;
     String titularConta;
     Double saldo = 0.00;
-    TipoDeConta tipoDeConta;
+    TipoConta tipoDeConta;
 
     public ContaInvestimento() {
     }
@@ -12,7 +14,7 @@ public class ContaInvestimento extends ContaDefault {
         this.idConta = counterId;
         this.titularConta = conta.getTitularConta();
         this.saldo = saldo;
-        this.tipoDeConta = TipoDeConta.ContaInvestimento;
+        this.tipoDeConta = TipoConta.ContaInvestimento;
         counterId++;
     }
 

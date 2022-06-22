@@ -1,14 +1,17 @@
+import src.models.clientes.Cliente;
+import src.models.contas.TipoConta;
+
 public class ContaDefault {
     private static Integer counterId = 0;
     Integer idConta;
     String titularConta;
     Double saldo = 0.00;
-    TipoDeConta tipoDeConta;
+    TipoConta tipoDeConta;
 
     public ContaDefault() {
     }
 
-    public ContaDefault(Cliente cliente, Double saldo, TipoDeConta tipoDeConta) {
+    public ContaDefault(Cliente cliente, Double saldo, TipoConta tipoDeConta) {
         this.idConta = counterId;
         this.titularConta = cliente.getNome();
         this.saldo = saldo;
@@ -41,11 +44,11 @@ public class ContaDefault {
         this.titularConta = titularConta;
     }
 
-    public TipoDeConta getTipoDeConta() {
+    public TipoConta getTipoDeConta() {
         return tipoDeConta;
     }
 
-    public void setTipoDeConta(TipoDeConta tipoDeConta) {
+    public void setTipoDeConta(TipoConta tipoDeConta) {
         this.tipoDeConta = tipoDeConta;
     }
 

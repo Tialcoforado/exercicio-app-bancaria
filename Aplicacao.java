@@ -1,3 +1,5 @@
+import src.models.contas.TipoConta;
+
 public class Aplicacao {
     public static void main(String[] args) throws Exception {
         
@@ -45,9 +47,9 @@ public class Aplicacao {
 
     // Abre contas correntes
     private static void TestaAberturaContaCorrenteSucesso_200(Banco myBank) {
-        myBank.abrirConta("jose", "jose@email.com", TipoDeConta.ContaCorrente);
-        myBank.abrirConta("Pedro", "pedro@email.com", TipoDeConta.ContaCorrente);
-        myBank.abrirConta("Maria", "maria@email.com", TipoDeConta.ContaCorrente);
+        myBank.abrirConta("jose", "jose@email.com", TipoConta.ContaCorrente);
+        myBank.abrirConta("Pedro", "pedro@email.com", TipoConta.ContaCorrente);
+        myBank.abrirConta("Maria", "maria@email.com", TipoConta.ContaCorrente);
     }
 
     // Faz os primeiros depositos

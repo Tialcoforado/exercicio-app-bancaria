@@ -1,6 +1,9 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import src.models.clientes.Cliente;
+import src.models.contas.TipoConta;
+
 public class Banco implements Operacoes {
     List<ContaDefault> contas = new ArrayList<>();
     List<ContaInvestimento> contasInvestimento = new ArrayList<>();
@@ -34,9 +37,9 @@ public class Banco implements Operacoes {
 
     // Abrir conta
     @Override
-    public List<ContaDefault> abrirConta(String nome, String email, TipoDeConta tipoDeConta) {
+    public List<ContaDefault> abrirConta(String nome, String email, TipoConta tipoDeConta) {
         Cliente cliente = new Cliente(nome, email);
-        ContaDefault novaConta = new ContaDefault(cliente, 0.00, TipoDeConta.ContaCorrente);
+        ContaDefault novaConta = new ContaDefault(cliente, 0.00, TipoConta.ContaCorrente);
         contas.add(novaConta);
         return contas;
     }
@@ -63,7 +66,7 @@ public class Banco implements Operacoes {
             contaCreditada.setSaldo(contaCreditada.getSaldo() + valor);
         }
         // Se cliente Pj Cobrar mais 0.5 de taxa
-        if (contaOrigem.tipoDeConta == TipoDeConta.ContaCorrentePj) {
+        if (contaOrigem.tipoDeConta == TipoConta.ContaCorrentePj) {
             contaOrigem.setSaldo(contaOrigem.getSaldo() - (valor * 0.5));
         }
             return lancamentos;
@@ -73,7 +76,7 @@ public class Banco implements Operacoes {
         ContaInvestimento contaInvest = new ContaInvestimento(conta, valor);
         contasInvestimento.add(contaInvest);
         // Se cliente Pj Cobrar mais 0.5 de taxa
-        if (contaInvest.tipoDeConta == TipoDeConta.ContaCorrentePj) {
+        if (contaInvest.tipoDeConta == TipoConta.ContaCorrentePj) {
             contaInvest.setSaldo(contaInvest.getSaldo() + (valor * 0.02));
         }
         return contasInvestimento;
@@ -87,7 +90,7 @@ public class Banco implements Operacoes {
         ContaDefault contaDebitada = contaOrigem;
         contaDebitada.setSaldo(contaDebitada.getSaldo() - valor);
         // Se cliente Pj Cobrar mais 0.5 de taxa
-        if (contaDebitada.tipoDeConta == TipoDeConta.ContaCorrentePj) {
+        if (contaDebitada.tipoDeConta == TipoConta.ContaCorrentePj) {
             contaDebitada.setSaldo(contaDebitada.getSaldo() - (valor * 0.5));
         }
         return lancamentos;
