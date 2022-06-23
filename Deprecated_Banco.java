@@ -1,29 +1,31 @@
 import java.util.ArrayList;
 import java.util.List;
 
+import src.exceptions.ValorNegativoException;
 import src.models.clientes.Cliente;
+import src.models.contas.ContaInvestimento;
 import src.models.contas.TipoConta;
 
-public class Banco implements Operacoes {
-    List<ContaDefault> contas = new ArrayList<>();
+public class Deprecated_Banco implements Operacoes {
+    List<Deprecated_ContaDefault> contas = new ArrayList<>();
     List<ContaInvestimento> contasInvestimento = new ArrayList<>();
     List<Lancamentos> lancamentos = new ArrayList<>();
 
-    public List<ContaDefault> getContas() {
+    public List<Deprecated_ContaDefault> getContas() {
         return contas;
     }
 
-    public ContaDefault getConta(Integer idConta) {
-        ContaDefault conta = contas.get(idConta);
+    public Deprecated_ContaDefault getConta(Integer idConta) {
+        Deprecated_ContaDefault conta = contas.get(idConta);
         return conta;
     }
 
-    public ContaDefault getContaInvestimento(Integer idConta) {
+    public Deprecated_ContaDefault getContaInvestimento(Integer idConta) {
         ContaInvestimento contaInvestimento = contasInvestimento.get(idConta);
         return contaInvestimento;
     }
 
-    public void setContas(List<ContaDefault> contas) {
+    public void setContas(List<Deprecated_ContaDefault> contas) {
         this.contas = contas;
     }
 
@@ -37,9 +39,9 @@ public class Banco implements Operacoes {
 
     // Abrir conta
     @Override
-    public List<ContaDefault> abrirConta(String nome, String email, TipoConta tipoDeConta) {
+    public List<Deprecated_ContaDefault> abrirConta(String nome, String email, TipoConta tipoDeConta) {
         Cliente cliente = new Cliente(nome, email);
-        ContaDefault novaConta = new ContaDefault(cliente, 0.00, TipoConta.ContaCorrente);
+        Deprecated_ContaDefault novaConta = new Deprecated_ContaDefault(cliente, 0.00, TipoConta.ContaCorrente);
         contas.add(novaConta);
         return contas;
     }
@@ -50,18 +52,18 @@ public class Banco implements Operacoes {
         if (valor < 0) {
             throw new ValorNegativoException();
         }
-        ContaDefault contaDestino = contas.get(idConta);
+        Deprecated_ContaDefault contaDestino = contas.get(idConta);
         Double saldoAtual = contaDestino.getSaldo();
         contaDestino.setSaldo(saldoAtual + valor);
     }
 
     // Transferir recursos entre contas
-    public List<Lancamentos> transferir(ContaDefault contaOrigem, ContaDefault contaDestino, Double valor) {
+    public List<Lancamentos> transferir(Deprecated_ContaDefault contaOrigem, Deprecated_ContaDefault contaDestino, Double valor) {
         // TODO validacoes, contaOrigem e contaDestino não podem ser iguais
         // Valor da transferencia tem que ser maior que zero
         if (contaOrigem != contaDestino & valor > 0) {
-            ContaDefault contaDebitada = contaOrigem;
-            ContaDefault contaCreditada = contaDestino;
+            Deprecated_ContaDefault contaDebitada = contaOrigem;
+            Deprecated_ContaDefault contaCreditada = contaDestino;
             contaDebitada.setSaldo(contaDebitada.getSaldo() - valor);
             contaCreditada.setSaldo(contaCreditada.getSaldo() + valor);
         }
@@ -72,7 +74,7 @@ public class Banco implements Operacoes {
             return lancamentos;
     }
 
-    public List<ContaInvestimento> investir(ContaDefault conta, Double valor) {
+    public List<ContaInvestimento> investir(Deprecated_ContaDefault conta, Double valor) {
         ContaInvestimento contaInvest = new ContaInvestimento(conta, valor);
         contasInvestimento.add(contaInvest);
         // Se cliente Pj Cobrar mais 0.5 de taxa
@@ -83,11 +85,11 @@ public class Banco implements Operacoes {
     };
 
     @Override
-    public List<Lancamentos> sacar(ContaDefault contaOrigem, Double valor) throws ValorNegativoException {
+    public List<Lancamentos> sacar(Deprecated_ContaDefault contaOrigem, Double valor) throws ValorNegativoException {
         if (valor < 0) {
             throw new ValorNegativoException();
         }
-        ContaDefault contaDebitada = contaOrigem;
+        Deprecated_ContaDefault contaDebitada = contaOrigem;
         contaDebitada.setSaldo(contaDebitada.getSaldo() - valor);
         // Se cliente Pj Cobrar mais 0.5 de taxa
         if (contaDebitada.tipoDeConta == TipoConta.ContaCorrentePj) {
@@ -99,7 +101,7 @@ public class Banco implements Operacoes {
 
     @Override
     public Double consultarSaldo(Integer idConta) {
-        ContaDefault contaConsultada = getConta(idConta);
+        Deprecated_ContaDefault contaConsultada = getConta(idConta);
         Double saldo = contaConsultada.getSaldo();
         return saldo;
     }

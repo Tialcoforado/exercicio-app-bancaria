@@ -6,7 +6,7 @@ public interface Conta {
     
     BigDecimal sacar(BigDecimal valor);
     BigDecimal depositar(BigDecimal valor);
-    BigDecimal transferir(BigDecimal valor);
+    BigDecimal transferir(BigDecimal valor, Conta receberoda);
     String consultarSaldo();
     
 }

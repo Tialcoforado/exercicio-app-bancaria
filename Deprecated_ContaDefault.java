@@ -1,17 +1,17 @@
 import src.models.clientes.Cliente;
 import src.models.contas.TipoConta;
 
-public class ContaDefault {
+public class Deprecated_ContaDefault {
     private static Integer counterId = 0;
     Integer idConta;
     String titularConta;
     Double saldo = 0.00;
     TipoConta tipoDeConta;
 
-    public ContaDefault() {
+    public Deprecated_ContaDefault() {
     }
 
-    public ContaDefault(Cliente cliente, Double saldo, TipoConta tipoDeConta) {
+    public Deprecated_ContaDefault(Cliente cliente, Double saldo, TipoConta tipoDeConta) {
         this.idConta = counterId;
         this.titularConta = cliente.getNome();
         this.saldo = saldo;

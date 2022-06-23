@@ -1,3 +1,4 @@
+package src.exceptions;
 
 public class ValorNegativoException extends Exception {
 
