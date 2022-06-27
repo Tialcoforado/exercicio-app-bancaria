@@ -8,7 +8,7 @@ import src.models.clientes.ClientePj;
 public class ContaInvestimento extends ContaDefault {
 
     protected ContaInvestimento(Cliente cliente) {
-        super(cliente, TipoConta.contaInvestimento);
+        super(cliente, TipoConta.CONTA_INVESTIMENTO);
     }
 
     @Override
@@ -19,7 +19,7 @@ public class ContaInvestimento extends ContaDefault {
     @Override
     public BigDecimal getSaldo() {
         if (this.cliente instanceof ClientePj) {
-            return super.getSaldo().multiply(BigDecimal.valueOf(ClientePj.rendimentoExtra));
+            return super.getSaldo().multiply(BigDecimal.valueOf(ClientePj.RENDIMENTO_EXTRA));
         }
         return super.getSaldo();
     }

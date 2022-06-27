@@ -8,7 +8,7 @@ import src.models.clientes.ClientePj;
 public class ContaCorrente extends ContaDefault {
 
     protected ContaCorrente(Cliente cliente) {
-        super(cliente, TipoConta.contaCorrente);
+        super(cliente, TipoConta.CONTA_CORRENTE);
     }
 
     @Override
@@ -34,6 +34,6 @@ public class ContaCorrente extends ContaDefault {
     }
 
     private BigDecimal getValorAcrescidoDeTaxaExtra(BigDecimal valor) {
-        return valor.multiply(BigDecimal.valueOf(ClientePj.taxaExtra));
+        return valor.multiply(BigDecimal.valueOf(ClientePj.TAXA_EXTRA));
     }
 }

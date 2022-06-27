@@ -1,10 +1,9 @@
 package src.models.clientes;
+
 public class ClientePj extends Cliente {
     private String cnpj;
-    public static final double taxaExtra = 0.005;
-    public static final double rendimentoExtra = 0.02;
-
-    
+    public static final double TAXA_EXTRA = 1.005;
+    public static final double RENDIMENTO_EXTRA = 1.02;
 
     @Override
     public String getDocumento() {
@@ -19,5 +18,4 @@ public class ClientePj extends Cliente {
         this.cnpj = cnpj;
     }
 
-    
 }
