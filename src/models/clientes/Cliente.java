@@ -1,11 +1,8 @@
-public class Cliente {
+package src.models.clientes;
+public abstract class Cliente {
     String nome;
     String email;
 
-    public Cliente(String nome, String email) {
-        this.nome = nome;
-        this.email = email;
-    }
 
     public String getNome() {
         return nome;
@@ -23,9 +20,6 @@ public class Cliente {
         this.email = email;
     }
 
-    @Override
-    public String toString() {
-        return "Cliente [nome=" + nome + " email=" + email + "]";
-    }
+    public abstract String getDocumento();
     
 }
