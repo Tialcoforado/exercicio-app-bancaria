@@ -2,9 +2,9 @@ package src.models.service;
 
 import java.math.BigDecimal;
 
-import src.models.clientes.Cliente;
 import src.models.clientes.ClientePf;
 import src.models.clientes.ClientePj;
+import src.models.contas.ContaInvestimento;
 import src.models.contas.TipoConta;
 
 public class Aplicacao {
@@ -38,5 +38,23 @@ public class Aplicacao {
 
         System.out.println(contaCorrentePf.consultarSaldo());
         System.out.println(contaCorrentePj.consultarSaldo());
+
+        try {
+            banco.abrirConta(clientePj, TipoConta.CONTA_POUPANCA);
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+        }
+
+        var contaPoupancaPf = banco.abrirConta(clientePf, TipoConta.CONTA_POUPANCA);
+        contaPoupancaPf.depositar(BigDecimal.valueOf(1000L));
+        System.out.println(contaPoupancaPf.consultarSaldo());
+
+        var contaInvestimentoPf = (ContaInvestimento) banco.abrirConta(clientePf, TipoConta.CONTA_INVESTIMENTO);
+        contaInvestimentoPf.depositar(BigDecimal.valueOf(1000L));
+        System.out.println(contaInvestimentoPf.consultarSaldo());
+
+        var contaInvestimentoPj = (ContaInvestimento) banco.abrirConta(clientePj, TipoConta.CONTA_INVESTIMENTO);
+        contaInvestimentoPj.investir(BigDecimal.valueOf(1000L));
+        System.out.println(contaInvestimentoPj.consultarSaldo());
     }
 }
